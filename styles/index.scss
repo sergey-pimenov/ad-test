@@ -1,0 +1,380 @@
+///*** Libs ***///
+@import './reset';
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Sizes
+$widthAdd: 505px;
+$heightAdd: 540px;
+
+// Colors
+$colorBg: #bed3ce;
+$colorText: #e74c3c;
+
+// Font
+$font: 'Arial', sans-serif;
+
+
+///*** Ad ***///
+.ad {
+  width: $widthAdd;
+  height: $heightAdd;
+  overflow: hidden;
+  background-color: $colorBg;
+  font-family: $font;
+  position: relative;
+  color: $colorText;
+  text-shadow: 1px 1px 1px black, 1px 1px 1px black;
+  border: 1px solid #000;
+
+  .parallax {
+    transition: transform 0.7s;
+  }
+
+  &:hover .parallax {
+    transition: transform 0.1s linear;
+  }
+  
+  --xMove: 0;
+  --yMove: 0;
+
+  $hide-scene-1-delay: 4s;
+  $hide-scene-1-duration: 0.5s;
+  $total-scene-1-duration: $hide-scene-1-delay + $hide-scene-1-duration;
+
+  .scene-1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: $colorBg;
+    z-index: 1;
+    animation: hide-scene $hide-scene-1-duration $hide-scene-1-delay forwards;
+  }
+
+  @keyframes hide-scene {
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .head {
+    width: 200px;
+    position: absolute;
+    left: 140px;
+    top: 50px;
+    transform: translateX(calc(2px * var(--xMove) * -1)) 
+               translateY(calc(3px * var(--yMove) * -1));
+  }
+
+  .hand {
+    width: 180px;
+    position: absolute;
+    left: 65px;
+    top: 270px;
+    transform: translateX(calc(5px * var(--xMove) * -1)) 
+               translateY(calc(7px * var(--yMove) * -1));
+  }
+
+  .hand-wrapper {
+    transform: translateX(25px) translateY(50px) scale(0.7);
+    transform-origin: 50% 300px;
+    animation: tranlateHand 0.5s ease-out forwards;
+  }
+
+  @keyframes tranlateHand {
+    100% {
+      transform: none;
+    }
+  }
+  
+  .scene-1-description {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+
+  $word-show-duration: 0.005s;
+  $word-show-delay: 0.7s;
+  $word-step-delay: 0.5s;
+  $word-step-easing: ease;
+
+  .word-1 {
+    opacity: 0;
+    animation: show-word
+               $word-show-duration
+               $word-show-delay
+               $word-step-easing
+               forwards;
+  }
+
+  .word-2 {
+    opacity: 0;
+    animation: show-word
+               $word-show-duration
+               $word-show-delay + $word-step-delay
+               $word-step-easing
+               forwards;
+  }
+
+  .word-3 {
+    opacity: 0;
+    animation: show-word
+               $word-show-duration
+               $word-show-delay + $word-step-delay * 2
+               $word-step-easing
+               forwards;
+  }
+
+  .word-4 {
+    opacity: 0;
+    animation: show-word
+               $word-show-duration
+               $word-show-delay + $word-step-delay * 3
+               $word-step-easing
+               forwards;
+  }
+
+  @keyframes show-word {
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .scene-2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  $hooligan-show-duration: 0.005s;
+  $hooligan-show-delay: $total-scene-1-duration + 0.2s;
+  $hooligan-step-delay: 0.6s;
+  $hooligan-step-easing: ease;
+
+  .hooligan-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(10px);
+  }
+
+  .hooligan-1-wrapper {
+    opacity: 0;
+    animation: show-hooligan
+               $hooligan-show-duration
+               $hooligan-show-delay
+               $hooligan-step-easing
+               forwards;
+  }
+
+  .hooligan-1 {
+    width: 280px;
+    position: absolute;
+    left: -15px;
+    bottom: -12px;
+    transform: translateX(calc(8px * var(--xMove) * -1)) 
+               translateY(calc(10px * var(--yMove) * -1));
+  }
+  
+  .hooligan-2 {
+    width: 280px;
+    position: absolute;
+    left: 12px;
+    bottom: -20px;
+    transform: translateX(calc(6px * var(--xMove) * -1)) 
+               translateY(calc(8px * var(--yMove) * -1));
+  }
+
+  .hooligan-2-wrapper {
+    opacity: 0;
+    animation: show-hooligan
+               $hooligan-show-duration
+               $hooligan-show-delay + $hooligan-step-delay
+               $hooligan-step-easing
+               forwards;
+  }
+  
+  .hooligan-3 {
+    width: 280px;
+    position: absolute;
+    left: -3px;
+    bottom: 80px;
+    transform: translateX(calc(4px * var(--xMove) * -1)) 
+               translateY(calc(6px * var(--yMove) * -1));
+  }
+
+  .hooligan-3-wrapper {
+    opacity: 0;
+    animation: show-hooligan
+               $hooligan-show-duration
+               $hooligan-show-delay + $hooligan-step-delay * 2
+               $hooligan-step-easing
+               forwards;
+  }
+  
+  .hooligan-4 {
+    width: 280px;
+    position: absolute;
+    left: 30px;
+    bottom: 100px;
+    transform: translateX(calc(2px * var(--xMove) * -1)) 
+               translateY(calc(2px * var(--yMove) * -1));
+  }
+
+  .hooligan-4-wrapper {
+    opacity: 0;
+    animation: show-hooligan
+               $hooligan-show-duration
+               $hooligan-show-delay + $hooligan-step-delay * 3
+               $hooligan-step-easing
+               forwards;
+  }
+
+  @keyframes show-hooligan {
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .scene-2-description {
+    position: absolute;
+    right: 25px;
+    top: 160px;
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 20px;
+  }
+
+  $line-show-duration: 0.05s;
+  $line-show-delay: $total-scene-1-duration + 0.2s;
+  $line-step-delay: 0.6s;
+  $line-step-easing: ease;
+  
+  .scene-2-description {
+    .line-1 {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: show-line
+                 $line-show-duration
+                 $line-show-delay
+                 $line-step-easing
+                 forwards;
+    }
+
+    .line-2 {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: show-line
+                 $line-show-duration
+                 $line-show-delay + $line-step-delay
+                 $line-step-easing
+                 forwards;
+    }
+
+    .line-3 {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: show-line
+                 $line-show-duration
+                 $line-show-delay + $line-step-delay * 2
+                 $line-step-easing
+                 forwards;
+    }
+
+    .line-4 {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: show-line
+                 $line-show-duration
+                 $line-show-delay + $line-step-delay * 3
+                 $line-step-easing
+                 forwards;
+    }
+
+    .line-5 {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: show-line
+                 $line-show-duration
+                 $line-show-delay + $line-step-delay * 4
+                 $line-step-easing
+                 forwards;
+    }
+
+    .line-6 {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: show-line
+                 $line-show-duration
+                 $line-show-delay + $line-step-delay * 5
+                 $line-step-easing
+                 forwards;
+    }
+  }
+
+  @keyframes show-line {
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  $show-button-delay: $line-show-duration + $line-show-delay + $line-step-delay * 4;
+
+  .action-button {
+    padding: 12px 20px;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    background-color: #e74c3c;
+    box-shadow: 1.2px 1.2px 1px black, 
+                1.2px 1.2px 1px black;
+    color: white;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+    pointer-events: auto;
+    transform: scale(0);
+    font-size: 11px;
+    text-shadow: none;
+    z-index: 1;
+    text-decoration: none;
+    animation: show-button 0.2s $show-button-delay cubic-bezier(0.255, 0.550, 0.540, 1.645) forwards;
+
+    &:hover {
+      box-shadow: 2.2px 2.2px 1px rgba(0, 0, 0, 0.5), 
+                  2.2px 2.2px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      box-shadow: 3.2px 3.2px 1px rgba(0, 0, 0, 0.35), 
+                  3.2px 3.2px 1px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  @keyframes show-button {
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
